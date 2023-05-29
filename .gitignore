@@ -36,3 +36,5 @@ logs/
 node_modules/
 .angular/
 postgres-hibernate-data/
+.env
+dist/

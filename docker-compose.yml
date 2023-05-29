@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  web-server-amaris-news:
+    depends_on:
+      - api-amaris-news
+    image: nginx:1.15.12-alpine
+    container_name: web-server-amaris-news
+    stdin_open: true
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/webapp/dist:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+    networks:
+      - app-news-network
+    environment:
+      TZ: ${TIME_ZONE}
+
+  api-amaris-news:
+    depends_on:
+      - postgres-amaris-news
+    image: amazoncorretto:11
+    container_name: api-amaris-news
+    command: sh -c "java -jar /api/amaris-news-${API_JAR_VERSION}.jar --spring.datasource.url=jdbc:postgresql://postgres-amaris-news:5432/postgres"
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target:/api
+    environment:
+      TZ: ${TIME_ZONE}
+      API_JAR_VERSION: ${API_JAR_VERSION}
+    networks:
+      - app-news-network
+    links:
+      - postgres-amaris-news
+
+  postgres-amaris-news:
+    image: postgres
+    container_name: postgres-amaris-news
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-hibernate-data:/data/postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /data/postgres
+      TZ: ${TIME_ZONE}
+    networks:
+      - app-news-network
+
+networks:
+  app-news-network:
+    driver: bridge

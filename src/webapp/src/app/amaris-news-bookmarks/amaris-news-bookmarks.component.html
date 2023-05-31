@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <app-alert-view [type]="alertType" [message]="alertMessage" />
+
+    <div class="row m-2">
+        <h2>Noticias favoritas</h2>
+    </div>
+
+    <div class="row">
+        <ngx-table [configuration]="configuration" [data]="data" [columns]="columns" />
+        <ng-template #dateColumn let-row let-rowIndex="rowIndex" let-column="column">
+            <div>{{newsDateFormatter(row.publishedAt)}}</div>
+        </ng-template>
+    </div>
+
+
+</div>

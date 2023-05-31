@@ -23,6 +23,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.news.amaris.controllers"))
                 .paths(PathSelectors.any())
                 .build()
+                .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo());
     }
 
@@ -34,4 +35,5 @@ public class SwaggerConfig {
                 .contact(new Contact("Azlain Saavedra", "", "azlain.saavedra.ext@sodexo.com"))
                 .build();
     }
+
 }

@@ -26,10 +26,10 @@ Asegúrate de tener instalados los siguientes componentes en tu máquina:
 `$ docker-compose up -d api-amaris-news`
 `$ docker-compose up -d web-server-amaris-news`
 
-##Documentacion swagger backend
+## Documentacion swagger backend
 -[http://localhost:8080/amaris-news/swagger-ui/index.html](http://localhost:8080/amaris-news/swagger-ui/index.html)
 
-##Frontend
+## Frontend
 -[http://localhost](http://localhost/news/bookmarks)
 
 ## Autor

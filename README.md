@@ -16,6 +16,13 @@ Asegúrate de tener instalados los siguientes componentes en tu máquina:
 - Navega hasta el directorio raíz del proyecto:
 `$ cd amaris-news`
 
+- Crear archivo .env:
+  + copiar el archivo .env y copiar las variables de entorno del ejemplo del archivo env.example
+  - POSTGRES_USER=nombre de usuario para a base de datos
+  - POSTGRES_PASSWORD=Clave para la base de datos
+  - API_JAR_VERSION=1.00.000 (Version del pom.xml)
+  - TIME_ZONE=America/Bogota
+
 - Iniciar el contenedor postgres:
 `$ docker-compose up -d postgres-amaris-news`
 
